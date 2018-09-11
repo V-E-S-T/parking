@@ -3,7 +3,6 @@ package com.parking.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-//import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
