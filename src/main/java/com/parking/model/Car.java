@@ -1,5 +1,6 @@
 package com.parking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 //import org.springframework.data.annotation.Id;
@@ -14,14 +15,17 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer car_id;
 
+    @Column(name = "model", nullable = false)
     private String model;
 
+    @Column(name = "number", nullable = false)
     private String number;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User owner;
+    @JsonIgnore
+    private User user;
 
     public Car(String carModel, String number) {
         this.model = carModel;
@@ -43,8 +47,8 @@ public class Car {
         return number;
     }
 
-    public User getOwner() {
-        return owner;
+    public User getUser() {
+        return user;
     }
 
     public void setCar_id(Integer car_id) {
@@ -59,8 +63,8 @@ public class Car {
         this.number = number;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -73,7 +77,7 @@ public class Car {
         if (!getCar_id().equals(car.getCar_id())) return false;
         if (!getModel().equals(car.getModel())) return false;
         if (!getNumber().equals(car.getNumber())) return false;
-        return getOwner().equals(car.getOwner());
+        return getUser().equals(car.getUser());
     }
 
     @Override

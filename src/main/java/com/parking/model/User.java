@@ -2,6 +2,8 @@ package com.parking.model;
 
 //import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,16 +15,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer user_id;
 
+    @Column(name = "firstname", nullable = false)
     private String firstName;
 
+    @Column(name = "lastname", nullable = false)
     private String lastName;
 
+    @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "password", nullable = false)
     private String password;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Car> carListing;
+    @JsonIgnore
+    private List<Car> cars;
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
@@ -54,8 +61,8 @@ public class User {
         return password;
     }
 
-    public List<Car> getCarListing() {
-        return carListing;
+    public List<Car> getCars() {
+        return cars;
     }
 
     public void setUser_id(Integer user_id) {
@@ -90,7 +97,7 @@ public class User {
         if (!getLastName().equals(user.getLastName())) return false;
         if (!getEmail().equals(user.getEmail())) return false;
         if (!getPassword().equals(user.getPassword())) return false;
-        return getCarListing() != null ? getCarListing().equals(user.getCarListing()) : user.getCarListing() == null;
+        return getCars() != null ? getCars().equals(user.getCars()) : user.getCars() == null;
     }
 
     @Override

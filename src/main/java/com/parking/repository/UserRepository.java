@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-    List<User> findUsersByCarListingIsNotNull();
-    List<User> findUsersByCarListingIsNull();
+    List<User> findUsersByCarsIsNotNull();
+    List<User> findUsersByCarsIsNull();
 }
