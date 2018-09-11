@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/rest")
@@ -26,7 +27,7 @@ public class ParkingRestController {
     }
 
     @RequestMapping("/users/with_cars")
-    public List<User> getUsersWithCars(){
+    public Set<User> getUsersWithCars(){
 
         return userService.getUsersWithCars();
     }

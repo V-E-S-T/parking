@@ -5,6 +5,7 @@ package com.parking.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,8 +29,8 @@ public class User {
     private String password;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JsonIgnore
-    private List<Car> cars;
+    //@JsonIgnore
+    private List<Car> cars = new ArrayList<>();
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
